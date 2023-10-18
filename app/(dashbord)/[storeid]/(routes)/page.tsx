@@ -1,6 +1,11 @@
 import React from 'react';
 
-const DashboardPage = () => {
+
+interface DashboardPageProps {
+    params: { storedId: string }
+}
+
+const DashboardPage: React.FC<DashboardPageProps> = async () => {
     return (
         <div>
             DashboardPage
