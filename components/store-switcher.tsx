@@ -40,7 +40,6 @@ const StoreSwitcher = ({
     ))
 
     const currentStore = formattedItems.find((item) => item.value === params.storeId)
-    console.log(currentStore)
     const [open, setOpen] = useState(false)
 
     const onStoreSelect = (store: { value: string, label: string }) => {
