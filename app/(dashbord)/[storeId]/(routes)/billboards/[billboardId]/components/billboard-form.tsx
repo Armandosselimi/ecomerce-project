@@ -2,16 +2,16 @@
 
 import * as z from "zod"
 import axios from "axios"
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "react-hot-toast"
-import { Trash } from "lucide-react"
-import { Billboard } from "@prisma/client"
-import { useParams, useRouter } from "next/navigation"
+import {useState} from "react"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {toast} from "react-hot-toast"
+import {Trash} from "lucide-react"
+import {Billboard} from "@prisma/client"
+import {useParams, useRouter} from "next/navigation"
 
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import {Input} from "@/components/ui/input"
+import {Button} from "@/components/ui/button"
 import {
     Form,
     FormControl,
@@ -20,11 +20,12 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Separator } from "@/components/ui/separator"
+import {Separator} from "@/components/ui/separator"
 
 
 import AlertModal from "@/components/modals/alert-modal";
 import Heading from "@/components/ui/heading";
+import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
     label: z.string().min(1),
@@ -101,7 +102,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 loading={loading}
             />
             <div className="flex items-center justify-between">
-                <Heading title={title} description={description} />
+                <Heading title={title} description={description}/>
                 {initialData && (
                     <Button
                         disabled={loading}
@@ -109,28 +110,28 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                         size="sm"
                         onClick={() => setOpen(true)}
                     >
-                        <Trash className="h-4 w-4" />
+                        <Trash className="h-4 w-4"/>
                     </Button>
                 )}
             </div>
-            <Separator />
+            <Separator/>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                     <FormField
                         control={form.control}
                         name="imageUrl"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Background image</FormLabel>
                                 <FormControl>
-                                    {/*<ImageUpload*/}
-                                    {/*    value={field.value ? [field.value] : []}*/}
-                                    {/*    disabled={loading}*/}
-                                    {/*    onChange={(url) => field.onChange(url)}*/}
-                                    {/*    onRemove={() => field.onChange('')}*/}
-                                    {/*/>*/}
+                                    <ImageUpload
+                                        value={field.value ? [field.value] : []}
+                                        disabled={loading}
+                                        onChange={(url) => field.onChange(url)}
+                                        onRemove={() => field.onChange('')}
+                                    />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
@@ -138,13 +139,13 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                         <FormField
                             control={form.control}
                             name="label"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Label</FormLabel>
                                     <FormControl>
                                         <Input disabled={loading} placeholder="Billboard label" {...field} />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage/>
                                 </FormItem>
                             )}
                         />
